@@ -47,3 +47,4 @@ alias mv='mv -i'
 alias rm='rm -i'
 
 alias cd='z'
+export PATH="$HOME/.local/bin:$PATH"
