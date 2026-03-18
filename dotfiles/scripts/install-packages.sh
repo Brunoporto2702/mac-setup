@@ -20,7 +20,7 @@ elif [[ -x /usr/local/bin/brew ]]; then
 fi
 
 brew update
-brew install starship fzf zoxide eza bat ripgrep fd atuin mise tmux
+brew install starship fzf zoxide eza bat ripgrep fd atuin mise tmux neovim
 brew install --cask ghostty
 
 if [[ -d "$(brew --prefix)/opt/fzf" ]]; then

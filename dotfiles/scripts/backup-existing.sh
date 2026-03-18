@@ -23,5 +23,6 @@ backup_file "$HOME/.zshrc"
 backup_file "$HOME/.config/starship.toml"
 backup_file "$HOME/.config/ghostty/config.ghostty"
 backup_file "$HOME/.config/ghostty/config"
+backup_file "$HOME/.config/nvim"
 
 echo "==> Backup concluído"

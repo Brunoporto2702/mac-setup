@@ -2,6 +2,7 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+MAC_SETUP_ROOT="$(dirname "$REPO_ROOT")"
 
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.config/ghostty"
@@ -19,5 +20,6 @@ echo "==> Criando symlinks"
 link_file "$REPO_ROOT/config/zsh/.zshrc" "$HOME/.zshrc"
 link_file "$REPO_ROOT/config/starship/starship.toml" "$HOME/.config/starship.toml"
 link_file "$REPO_ROOT/config/ghostty/config.ghostty" "$HOME/.config/ghostty/config.ghostty"
+link_file "$MAC_SETUP_ROOT/nvim/config" "$HOME/.config/nvim"
 
 echo "==> Symlinks concluídos"
