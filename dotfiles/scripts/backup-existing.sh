@@ -6,7 +6,11 @@ timestamp="$(date +%Y%m%d-%H%M%S)"
 backup_file() {
   local file="$1"
 
-  if [[ -e "$file" || -L "$file" ]]; then
+  if [[ -L "$file" ]]; then
+    return
+  fi
+
+  if [[ -e "$file" ]]; then
     local backup="${file}.bak.${timestamp}"
     mv "$file" "$backup"
     echo "Backup: $file -> $backup"
