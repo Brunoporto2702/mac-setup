@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+timestamp="$(date +%Y%m%d-%H%M%S)"
+
+backup_file() {
+  local file="$1"
+
+  if [[ -e "$file" || -L "$file" ]]; then
+    local backup="${file}.bak.${timestamp}"
+    mv "$file" "$backup"
+    echo "Backup: $file -> $backup"
+  fi
+}
+
+echo "==> Fazendo backup de configs existentes"
+
+backup_file "$HOME/.zshrc"
+backup_file "$HOME/.config/starship.toml"
+backup_file "$HOME/.config/ghostty/config.ghostty"
+backup_file "$HOME/.config/ghostty/config"
+
+echo "==> Backup concluído"

@@ -1,0 +1,55 @@
+add_newline = true
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$nodejs\
+$python\
+$golang\
+$rust\
+$java\
+$docker_context\
+$cmd_duration\
+$line_break\
+$character
+"""
+
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "blue"
+
+[git_branch]
+symbol = " "
+style = "purple"
+
+[git_status]
+style = "red"
+
+[nodejs]
+format = " [node $version](bold green)"
+
+[python]
+format = " [py $version](bold yellow)"
+
+[golang]
+format = " [go $version](bold cyan)"
+
+[rust]
+format = " [rs $version](bold red)"
+
+[java]
+format = " [java $version](bold bright-red)"
+
+[docker_context]
+format = " [docker](blue)"
+
+[cmd_duration]
+min_time = 500
+format = " [$duration](dimmed white)"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold green)"
