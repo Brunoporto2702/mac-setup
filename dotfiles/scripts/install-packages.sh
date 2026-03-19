@@ -21,7 +21,7 @@ fi
 
 brew update
 brew install starship fzf zoxide eza bat ripgrep fd atuin mise tmux neovim
-brew install --cask ghostty
+brew install --cask ghostty rectangle caffeine
 
 if [[ -d "$(brew --prefix)/opt/fzf" ]]; then
   echo "==> Instalando key bindings/completion do fzf"
