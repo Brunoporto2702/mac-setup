@@ -29,3 +29,5 @@ if [[ -d "$(brew --prefix)/opt/fzf" ]]; then
 fi
 
 echo "==> Pacotes instalados"
+
+# mock change
