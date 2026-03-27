@@ -7,6 +7,9 @@ local map = vim.keymap.set
 map("n", "j", function() return vim.v.count == 0 and "gj" or "j" end, { expr = true, silent = true })
 map("n", "k", function() return vim.v.count == 0 and "gk" or "k" end, { expr = true, silent = true })
 
+-- Salvar
+map({ "n", "i", "v" }, "<C-s>", "<Esc>:w<CR>", { desc = "Salvar arquivo" })
+
 -- Busca
 map("n", "<leader>c", ":nohlsearch<CR>", { desc = "Limpar highlight de busca" })
 map("n", "n", "nzzzv",   { desc = "Próximo resultado (centralizado)" })
