@@ -12,7 +12,6 @@ return {
 				"lua_ls",
 				"pyright",
 				"ts_ls",
-				"gopls",
 				"bashls",
 			},
 		},
