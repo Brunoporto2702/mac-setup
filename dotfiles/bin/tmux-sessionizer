@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+# Find a repo in preferred directories using fzf
+if [[ $# -eq 1 ]]; then
+  selected=$1
+else
+  selected=$(find ~/repos -mindepth 1 -maxdepth 1 -type d | fzf)
+fi
+
+# Nothing selected, nothing to do
+if [[ -z $selected ]]; then
+  exit 0
+fi
+
+# Session name: basename with dots replaced by underscores
+selected_name=$(basename "$selected" | tr . _)
+
+# Set terminal window title
+echo -ne "\033]0;${selected_name}\007"
+
+tmux_running=$(pgrep tmux)
+
+# Not in tmux and tmux not running — create session and attach
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+  tmux new-session -ds "$selected_name" -c "$selected" -n vim
+  tmux new-window -t "$selected_name" -n repl -c "$selected"
+  tmux send-keys -t "${selected_name}:vim" "nvim ." C-m
+  tmux select-window -t "${selected_name}:vim"
+  tmux attach -t "$selected_name"
+  exit 0
+fi
+
+# Session doesn't exist yet — create it detached
+if ! tmux has-session -t="$selected_name" 2>/dev/null; then
+  tmux new-session -ds "$selected_name" -c "$selected" -n vim
+  tmux new-window -t "$selected_name" -n repl -d -c "$selected"
+  tmux send-keys -t "${selected_name}:vim" "nvim ." C-m
+fi
+
+# Attach or switch to session
+if [[ -z $TMUX ]]; then
+  tmux attach -t "$selected_name"
+else
+  tmux switch-client -t "$selected_name"
+fi
