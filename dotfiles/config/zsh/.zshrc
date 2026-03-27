@@ -49,5 +49,9 @@ alias rm='rm -i'
 alias cd='z'
 export PATH="$HOME/.local/bin:$HOME/repos/mac-setup/dotfiles/bin:$PATH"
 
+# Plugins
+source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
 # Keybindings
 bindkey -s '^f' 'tmux-sessionizer\n'
