@@ -1,5 +1,4 @@
 vim.opt.termguicolors = true
-vim.cmd.colorscheme("habamax")
 
 -- Transparência
 local transparent_groups = {
@@ -20,7 +19,6 @@ vim.opt.wrap           = false
 vim.opt.scrolloff      = 10
 vim.opt.sidescrolloff  = 10
 vim.opt.signcolumn     = "yes"
-vim.opt.colorcolumn    = "100"
 vim.opt.showmatch      = true
 vim.opt.showmode       = false
 vim.opt.cmdheight      = 1
