@@ -49,7 +49,10 @@ return {
 					local map = vim.keymap.set
 
 					map("n", "K", vim.lsp.buf.hover, opts)
-					map("n", "<leader>gd", vim.lsp.buf.definition, opts)
+					map("n", "gd", function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end, opts)
+					map("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
+					map("n", "gI", function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end, opts)
+					map("n", "gy", function() require("telescope.builtin").lsp_type_definitions({ reuse_win = true }) end, opts)
 					map("n", "<leader>gD", vim.lsp.buf.declaration, opts)
 					map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 					map("n", "<leader>rn", vim.lsp.buf.rename, opts)
