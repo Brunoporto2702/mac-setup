@@ -55,6 +55,3 @@ source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # Keybindings
 bindkey -s '^f' 'tmux-sessionizer\n'
-
-# API KEYS
-export ANTHROPIC_API_KEY=$(security find-generic-password -a "$USER" -s ANTHROPIC_API_KEY -w) #TODO: move to specific personal conputer config
