@@ -24,5 +24,6 @@ backup_file "$HOME/.config/starship.toml"
 backup_file "$HOME/.config/ghostty/config.ghostty"
 backup_file "$HOME/.config/ghostty/config"
 backup_file "$HOME/.config/nvim"
+#TODO: add tmux config
 
 echo "==> Backup concluído"
