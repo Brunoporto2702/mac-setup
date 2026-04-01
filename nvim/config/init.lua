@@ -16,7 +16,14 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Plugins (specs vão em lua/plugins/*.lua)
-require("lazy").setup("plugins", {
+local profile = os.getenv("MAC_PROFILE") or "personal"
+local specs = { { import = "plugins.base" } }
+local profile_plugins_dir = vim.fn.stdpath("config") .. "/lua/plugins/" .. profile
+local has_lua = vim.fn.globpath(profile_plugins_dir, "*.lua") ~= ""
+if has_lua then
+	table.insert(specs, { import = "plugins." .. profile })
+end
+
+require("lazy").setup(specs, {
 	change_detection = { notify = false },
 })
