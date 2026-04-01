@@ -9,6 +9,9 @@ fi
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+# Profile
+export MAC_PROFILE=$(cat ~/.mac-profile 2>/dev/null || echo "personal")
+
 # History
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=100000
