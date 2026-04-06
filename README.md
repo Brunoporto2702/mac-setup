@@ -27,16 +27,18 @@ cd dotfiles && ./scripts/link-configs.sh
 ```
 
 **How it works:**
+- Packages: `bootstrap.sh` always runs `install-packages.sh` (base), then runs `install-packages.<profile>.sh` if it exists. Profile scripts can also be run standalone.
 - Shell/terminal configs: if a profile variant exists (e.g. `zshrc.work`), it gets symlinked instead of the base. Profile files source the base first, then add profile-specific config.
 - Nvim plugins: `lua/plugins/base/` is always loaded. Drop files into `lua/plugins/<profile>/` for profile-specific plugins — no other changes needed.
 
 ## After adding a new package
 
-Edit `dotfiles/scripts/install-packages.sh`, then re-run it:
+For packages common to all machines, edit `dotfiles/scripts/install-packages.sh`. For profile-specific packages, edit `dotfiles/scripts/install-packages.<profile>.sh` (create it if it doesn't exist). Then re-run it:
 
 ```sh
 cd dotfiles
-./scripts/install-packages.sh
+./scripts/install-packages.sh         # base
+./scripts/install-packages.personal.sh  # example: personal profile
 ```
 
 ## After changing configs
