@@ -40,7 +40,7 @@ The repo has two top-level areas:
 
 **Adding a profile-specific config:** create a file next to the base config following the naming convention below. No changes to scripts needed — `link_config` picks it up automatically.
 
-**Adding a new package:** edit `dotfiles/scripts/install-packages.sh`, then re-run it.
+**Adding a new package:** edit `dotfiles/scripts/install-packages.sh` (common) or `install-packages.<profile>.sh` (profile-specific), then re-run it. `bootstrap.sh` runs base + profile script automatically; profile scripts can also be run standalone.
 
 ## Symlink map
 
