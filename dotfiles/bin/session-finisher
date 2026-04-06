@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+quit_iterm=false
+
+# Handle flags
+for arg in "$@"; do
+  case $arg in
+  --quit-iterm2)
+    quit_iterm=true
+    shift
+    ;;
+  *) ;;
+  esac
+done
+
+# Get list of tmux sessions
+sessions=$(tmux list-sessions -F '#S' 2>/dev/null)
+
+if [[ -z "$sessions" ]]; then
+  echo "No tmux sessions found."
+  exit 0
+fi
+
+# Use fzf with multi-select and ctrl-a to toggle all
+selected=$(echo "$sessions" | fzf --multi --prompt="Select sessions to kill: " --bind ctrl-a:toggle-all)
+
+if [[ -z "$selected" ]]; then
+  echo "Aborted — no sessions selected."
+  exit 0
+fi
+
+# Confirm
+echo "You selected:"
+echo "$selected"
+read -p "Are you sure you want to kill these sessions? [y/N] " confirm
+
+if [[ "$confirm" =~ ^[Yy]$ ]]; then
+  echo "$selected" | while read -r session; do
+    echo "Killing session: $session"
+    tmux kill-session -t "$session"
+  done
+  echo "✅ Selected sessions killed."
+else
+  echo "Aborted."
+  exit 0
+fi
+
+# Quit iTerm2 if requested
+if $quit_iterm; then
+  echo "🛑 Quitting iTerm2..."
+  osascript <<EOF
+tell application "iTerm2"
+  quit
+end tell
+EOF
+fi

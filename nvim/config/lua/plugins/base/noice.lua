@@ -19,6 +19,12 @@ return {
 					command_palette = true,
 					long_message_to_split = true,
 				},
+				routes = {
+					{
+						filter = { event = "msg_show", kind = "" },
+						view = "mini",
+					},
+				},
 			})
 		end,
 	},

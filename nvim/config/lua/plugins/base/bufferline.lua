@@ -15,6 +15,7 @@ return {
 			{ "[B", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer prev" },
 			{ "]B", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer next" },
 			{ "<leader>bj", "<cmd>BufferLinePick<cr>", desc = "Pick Buffer" },
+			{ "<leader>bd", "<cmd>bdelete<cr>", desc = "Delete Buffer" },
 		},
 		config = function()
 			require("bufferline").setup({
