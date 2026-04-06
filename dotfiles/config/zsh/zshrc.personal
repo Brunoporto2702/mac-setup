@@ -1,5 +1,7 @@
 source "$HOME/.dotfiles-root"
 source "$MAC_SETUP_ROOT/dotfiles/config/zsh/base.zshrc"
 
+eval "$(mise activate zsh)"
+
 # API Keys
 export ANTHROPIC_API_KEY=$(security find-generic-password -a "$USER" -s ANTHROPIC_API_KEY -w)

@@ -29,7 +29,6 @@ autoload -Uz compinit
 compinit
 
 # Tooling
-eval "$(mise activate zsh)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
@@ -50,7 +49,7 @@ alias mv='mv -i'
 alias rm='rm -i'
 
 alias cd='z'
-export PATH="$HOME/.local/bin:$HOME/repos/mac-setup/dotfiles/bin:$PATH"
+export PATH="$HOME/.local/bin:$MAC_SETUP_ROOT/dotfiles/bin:$PATH"
 
 # Plugins
 source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
