@@ -10,7 +10,7 @@ local plugin_themes = {
 	},
 	jellybeans = {
 		plugin = "wtfox/jellybeans.nvim",
-		setup = function() require("jellybeans").setup() end,
+		setup = function() require("jellybeans").setup({}) end,
 	},
 }
 
