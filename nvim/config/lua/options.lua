@@ -58,7 +58,7 @@ vim.opt.completeopt = "menuone,noinsert,noselect"
 -- Performance
 vim.opt.lazyredraw = true
 vim.opt.synmaxcol = 300
-vim.opt.updatetime = 300
+vim.opt.updatetime = 500
 vim.opt.timeoutlen = 0
 vim.opt.ttimeoutlen = 0
 vim.opt.redrawtime = 10000
