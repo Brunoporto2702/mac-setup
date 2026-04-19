@@ -9,9 +9,6 @@ fi
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-# Profile
-export MAC_PROFILE=$(cat ~/.mac-profile 2>/dev/null || echo "personal")
-
 # History
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=100000
@@ -32,6 +29,7 @@ compinit
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
+eval "$(mise activate zsh)"
 
 [ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
@@ -57,3 +55,6 @@ source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # Keybindings
 bindkey -s '^f' 'tmux-sessionizer\n'
+
+# API Keys
+export ANTHROPIC_API_KEY=$(security find-generic-password -a "$USER" -s ANTHROPIC_API_KEY -w 2>/dev/null)

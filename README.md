@@ -11,34 +11,16 @@ cd dotfiles
 
 This will:
 1. Install Homebrew (if missing) and all packages
-2. Prompt for a profile (`personal`, `work`, or a custom name)
-3. Back up any existing config files (as `.bak.<timestamp>`)
-4. Create symlinks from your home directory into this repo
-
-## Profiles
-
-The active profile is stored in `~/.mac-profile`. It controls which config variant gets symlinked and which nvim plugins get loaded.
-
-**Switch profile:**
-
-```sh
-echo "work" > ~/.mac-profile
-cd dotfiles && ./scripts/link-configs.sh
-```
-
-**How it works:**
-- Packages: `bootstrap.sh` always runs `install-packages.sh` (base), then runs `install-packages.<profile>.sh` if it exists. Profile scripts can also be run standalone.
-- Shell/terminal configs: if a profile variant exists (e.g. `zshrc.work`), it gets symlinked instead of the base. Profile files source the base first, then add profile-specific config.
-- Nvim plugins: `lua/plugins/base/` is always loaded. Drop files into `lua/plugins/<profile>/` for profile-specific plugins — no other changes needed.
+2. Back up any existing config files (as `.bak.<timestamp>`)
+3. Create symlinks from your home directory into this repo
 
 ## After adding a new package
 
-For packages common to all machines, edit `dotfiles/scripts/install-packages.sh`. For profile-specific packages, edit `dotfiles/scripts/install-packages.<profile>.sh` (create it if it doesn't exist). Then re-run it:
+Edit `dotfiles/scripts/install-packages.sh`, then re-run it:
 
 ```sh
 cd dotfiles
-./scripts/install-packages.sh         # base
-./scripts/install-packages.personal.sh  # example: personal profile
+./scripts/install-packages.sh
 ```
 
 ## After changing configs
@@ -58,15 +40,15 @@ cd dotfiles
 
 ## Symlink map
 
-`link-configs.sh` links the profile variant if it exists, otherwise falls back to the base.
+| Repo path | System path |
+|---|---|
+| `dotfiles/config/zsh/zshrc` | `~/.zshrc` |
+| `dotfiles/config/starship/starship.toml` | `~/.config/starship.toml` |
+| `dotfiles/config/ghostty/config.ghostty` | `~/.config/ghostty/config.ghostty` |
+| `dotfiles/config/tmux/tmux.conf` | `~/.config/tmux/tmux.conf` |
+| `nvim/config/` | `~/.config/nvim` |
 
-| Repo path (base) | Profile override | System path |
-|---|---|---|
-| `dotfiles/config/zsh/base.zshrc` | `dotfiles/config/zsh/zshrc.<profile>` | `~/.zshrc` |
-| `dotfiles/config/starship/starship.toml` | `dotfiles/config/starship/starship.<profile>.toml` | `~/.config/starship.toml` |
-| `dotfiles/config/ghostty/config.ghostty` | `dotfiles/config/ghostty/config.<profile>.ghostty` | `~/.config/ghostty/config.ghostty` |
-| `dotfiles/config/tmux/tmux.conf` | `dotfiles/config/tmux/tmux.<profile>.conf` | `~/.config/tmux/tmux.conf` |
-| `nvim/config/` | — | `~/.config/nvim` |
+> A personal/work profile system was removed at tag [`profile-system-v1`](https://github.com/Brunoporto2702/mac-setup/releases/tag/profile-system-v1). See that tag if you want to adapt it.
 
 ## Packages installed
 
