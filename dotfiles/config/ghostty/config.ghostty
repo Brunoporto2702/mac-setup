@@ -1,4 +1,4 @@
-theme = Jellybeans
+theme = Gruvbox Dark Hard
 background-opacity = 0.96
 macos-titlebar-style = tabs
 window-padding-x = 10
