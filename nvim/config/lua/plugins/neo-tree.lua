@@ -8,7 +8,19 @@ return {
 	},
 	lazy = false,
 	keys = {
-		{ "<leader>e", ":Neotree toggle<CR>", desc = "Toggle Neo-tree" },
+		{
+			"<leader>e",
+			function()
+				local manager = require("neo-tree.sources.manager")
+				local state = manager.get_state("filesystem")
+				if state and state.winid and vim.api.nvim_win_is_valid(state.winid) then
+					vim.cmd("Neotree close")
+				else
+					vim.cmd("Neotree reveal")
+				end
+			end,
+			desc = "Toggle Neo-tree",
+		},
 	},
 	opts = {
 		window = {
