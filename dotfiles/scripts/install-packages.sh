@@ -21,7 +21,7 @@ fi
 
 brew update
 brew install starship fzf zoxide eza bat ripgrep fd atuin mise uv tmux neovim stylua tree-sitter tree-sitter-cli lazygit zsh-syntax-highlighting zsh-autosuggestions ffmpeg
-brew install --cask ghostty rectangle caffeine visual-studio-code dbvisualizer claude
+brew install --cask ghostty rectangle caffeine visual-studio-code dbvisualizer claude 1password
 # Fonts
 brew install --cask font-martian-mono-nerd-font font-roboto-mono-nerd-font
 
