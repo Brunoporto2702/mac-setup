@@ -20,7 +20,14 @@ elif [[ -x /usr/local/bin/brew ]]; then
 fi
 
 brew update
-brew install starship fzf zoxide eza bat ripgrep fd atuin mise uv tmux neovim stylua tree-sitter tree-sitter-cli lazygit zsh-syntax-highlighting zsh-autosuggestions ffmpeg
+brew install starship fzf zoxide eza bat ripgrep fd atuin mise uv tmux neovim stylua tree-sitter tree-sitter-cli lazygit zsh-syntax-highlighting zsh-autosuggestions
+
+# ffmpeg full build (libfreetype/harfbuzz/fontconfig — necessário pro drawtext).
+# O tap principal do Homebrew distribui só o build "lite", sem suporte a fontes.
+brew tap homebrew-ffmpeg/ffmpeg
+brew uninstall --ignore-dependencies ffmpeg 2>/dev/null || true
+brew install homebrew-ffmpeg/ffmpeg/ffmpeg
+
 brew install --cask ghostty rectangle caffeine visual-studio-code dbvisualizer claude 1password
 # Fonts
 brew install --cask font-martian-mono-nerd-font font-roboto-mono-nerd-font
