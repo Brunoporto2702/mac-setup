@@ -50,6 +50,22 @@ cd dotfiles
 
 > A personal/work profile system was removed at tag [`profile-system-v1`](https://github.com/Brunoporto2702/mac-setup/releases/tag/profile-system-v1). See that tag if you want to adapt it.
 
+## Secrets
+
+API keys and tokens are stored in the macOS Keychain and exported in `zshrc` via `security find-generic-password`. To add a new secret:
+
+```sh
+security add-generic-password -a "$USER" -s SECRET_NAME -U -w
+```
+
+`-U` updates if the entry exists, `-w` without a value opens a secure prompt (avoids shell history). Then add the export to `dotfiles/config/zsh/zshrc`:
+
+```sh
+export SECRET_NAME=$(security find-generic-password -a "$USER" -s SECRET_NAME -w 2>/dev/null)
+```
+
+Currently stored: `ANTHROPIC_API_KEY`, `VERCEL_TOKEN`.
+
 ## Packages installed
 
 **Homebrew formulae:** `starship`, `fzf`, `zoxide`, `eza`, `bat`, `ripgrep`, `fd`, `atuin`, `mise`, `uv`, `tmux`, `neovim`, `lazygit`, `stylua`, `tree-sitter`, `zsh-syntax-highlighting`, `zsh-autosuggestions`, `ffmpeg`
