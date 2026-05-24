@@ -65,6 +65,7 @@ return {
 						map("n", "<leader>gD", vim.lsp.buf.declaration, opts)
 						map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 						map("n", "<leader>rn", vim.lsp.buf.rename, opts)
+						map("n", "<leader>cr", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "Renomear símbolo" }))
 						map("n", "<leader>fr", vim.lsp.buf.references, opts)
 
 						-- Document highlight: ilumina ocorrências da variável sob o cursor
