@@ -26,7 +26,7 @@ brew install starship fzf zoxide eza bat ripgrep fd atuin mise uv tmux neovim st
 # O tap principal do Homebrew distribui só o build "lite", sem suporte a fontes.
 brew tap homebrew-ffmpeg/ffmpeg
 brew uninstall --ignore-dependencies ffmpeg 2>/dev/null || true
-brew install homebrew-ffmpeg/ffmpeg/ffmpeg
+brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-zimg
 
 brew install --cask ghostty rectangle caffeine visual-studio-code dbvisualizer claude 1password obsidian
 # Fonts
