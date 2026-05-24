@@ -13,6 +13,7 @@ return {
 				"pyright",
 				"ts_ls",
 				"bashls",
+				"marksman",
 			},
 		},
 	},
@@ -91,8 +92,9 @@ return {
 			vim.lsp.config("ts_ls", {})
 			vim.lsp.config("gopls", {})
 			vim.lsp.config("bashls", {})
+			vim.lsp.config("marksman", {})
 
-			vim.lsp.enable({ "lua_ls", "pyright", "ts_ls", "gopls", "bashls" })
+			vim.lsp.enable({ "lua_ls", "pyright", "ts_ls", "gopls", "bashls", "marksman" })
 		end,
 	},
 }

@@ -32,8 +32,31 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.wrap = true
 		vim.opt_local.linebreak = true
 		vim.opt_local.spell = true
+		vim.opt_local.spelllang = "en,pt_br"
 	end,
 })
+
+-- Conceallevel pro render-markdown decorar headers/code blocks
+vim.api.nvim_create_autocmd("FileType", {
+	group = augroup,
+	pattern = "markdown",
+	callback = function()
+		vim.opt_local.conceallevel = 2
+	end,
+})
+
+-- Spell highlights: só undercurl, sem repintar a palavra
+local function soften_spell()
+	vim.api.nvim_set_hl(0, "SpellBad", { undercurl = true, sp = "#e06c75" })
+	vim.api.nvim_set_hl(0, "SpellCap", { undercurl = true, sp = "#61afef" })
+	vim.api.nvim_set_hl(0, "SpellRare", { undercurl = true, sp = "#c678dd" })
+	vim.api.nvim_set_hl(0, "SpellLocal", { undercurl = true, sp = "#56b6c2" })
+end
+vim.api.nvim_create_autocmd("ColorScheme", {
+	group = augroup,
+	callback = soften_spell,
+})
+soften_spell()
 
 -- Terminal: sem números nem signcolumn
 vim.api.nvim_create_autocmd("TermOpen", {
