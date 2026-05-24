@@ -29,7 +29,6 @@ compinit
 
 # Tooling
 eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
 eval "$(atuin init zsh)"
 eval "$(mise activate zsh)"
 
@@ -61,3 +60,6 @@ bindkey -s '^f' 'tmux-sessionizer\n'
 # API Keys
 export ANTHROPIC_API_KEY=$(security find-generic-password -a "$USER" -s ANTHROPIC_API_KEY -w 2>/dev/null)
 export VERCEL_TOKEN=$(security find-generic-password -a "$USER" -s VERCEL_TOKEN -w 2>/dev/null)
+
+# zoxide (must be at end of file, after all PATH and alias changes)
+eval "$(zoxide init zsh)"
