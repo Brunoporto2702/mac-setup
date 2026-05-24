@@ -20,8 +20,13 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		dependencies = { "williamboman/mason-lspconfig.nvim" },
+		dependencies = { "williamboman/mason-lspconfig.nvim", "saghen/blink.cmp" },
 		config = function()
+			-- Capabilities do blink.cmp pra completação via LSP
+			vim.lsp.config("*", {
+				capabilities = require("blink.cmp").get_lsp_capabilities(),
+			})
+
 			-- Diagnósticos
 			vim.diagnostic.config({
 				virtual_text = false,
