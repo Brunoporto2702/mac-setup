@@ -18,6 +18,7 @@ return {
 					json = { "prettier" },
 					markdown = { "prettier" },
 					go = { "gofumpt" },
+					rust = { "rustfmt" },
 					sh = { "shfmt" },
 					bash = { "shfmt" },
 				},
