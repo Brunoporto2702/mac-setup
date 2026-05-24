@@ -90,6 +90,21 @@ map("n", "[d", function()
 	vim.diagnostic.jump({ count = -1 })
 end, { desc = "Diagnóstico anterior" })
 map("n", "<leader>dl", vim.diagnostic.open_float, { desc = "Mostrar diagnóstico da linha" })
+map("n", "<leader>cd", function()
+	local lnum = vim.api.nvim_win_get_cursor(0)[1] - 1
+	local diags = vim.diagnostic.get(0, { lnum = lnum })
+	if vim.tbl_isempty(diags) then
+		vim.notify("Nenhum diagnóstico nesta linha", vim.log.levels.WARN)
+		return
+	end
+	local msgs = {}
+	for _, d in ipairs(diags) do
+		table.insert(msgs, d.message)
+	end
+	local text = table.concat(msgs, "\n")
+	vim.fn.setreg("+", text)
+	vim.notify("Diagnóstico copiado")
+end, { desc = "Copiar diagnóstico da linha" })
 map("n", "<leader>q", function()
 	vim.diagnostic.setloclist({ open = true })
 end, { desc = "Lista de diagnósticos" })
