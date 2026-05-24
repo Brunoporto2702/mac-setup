@@ -68,7 +68,7 @@ Currently stored: `ANTHROPIC_API_KEY`, `VERCEL_TOKEN`.
 
 ## Packages installed
 
-**Homebrew formulae:** `starship`, `fzf`, `zoxide`, `eza`, `bat`, `ripgrep`, `fd`, `atuin`, `mise`, `uv`, `tmux`, `neovim`, `lazygit`, `stylua`, `tree-sitter`, `zsh-syntax-highlighting`, `zsh-autosuggestions`, `ffmpeg`
+**Homebrew formulae:** `starship`, `fzf`, `zoxide`, `eza`, `bat`, `ripgrep`, `fd`, `atuin`, `mise`, `uv`, `tmux`, `neovim`, `lazygit`, `stylua`, `tree-sitter`, `zsh-syntax-highlighting`, `zsh-autosuggestions`, `ffmpeg`, `rustup`
 
 **Homebrew casks:** `ghostty`, `rectangle`, `caffeine`, `visual-studio-code`, `dbvisualizer`, `claude`, `1password`, `obsidian`
 

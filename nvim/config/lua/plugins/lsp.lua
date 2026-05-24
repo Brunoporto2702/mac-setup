@@ -14,6 +14,7 @@ return {
 				"ts_ls",
 				"bashls",
 				"marksman",
+				"rust_analyzer",
 			},
 		},
 	},
@@ -93,8 +94,16 @@ return {
 			vim.lsp.config("gopls", {})
 			vim.lsp.config("bashls", {})
 			vim.lsp.config("marksman", {})
+			vim.lsp.config("rust_analyzer", {
+				settings = {
+					["rust-analyzer"] = {
+						check = { command = "clippy" },
+						cargo = { allFeatures = true },
+					},
+				},
+			})
 
-			vim.lsp.enable({ "lua_ls", "pyright", "ts_ls", "gopls", "bashls", "marksman" })
+			vim.lsp.enable({ "lua_ls", "pyright", "ts_ls", "gopls", "bashls", "marksman", "rust_analyzer" })
 		end,
 	},
 }
