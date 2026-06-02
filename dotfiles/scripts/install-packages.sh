@@ -28,9 +28,21 @@ brew tap homebrew-ffmpeg/ffmpeg
 brew uninstall --ignore-dependencies ffmpeg 2>/dev/null || true
 brew install homebrew-ffmpeg/ffmpeg/ffmpeg --with-zimg
 
-brew install --cask ghostty rectangle caffeine visual-studio-code dbvisualizer claude 1password obsidian
+# Casks — instalados um a um e com --adopt pra serem idempotentes
+# (--adopt assume apps já presentes em /Applications sem reinstalar/dar erro).
+install_cask() {
+  for cask in "$@"; do
+    if brew list --cask "$cask" >/dev/null 2>&1; then
+      echo "==> Cask '$cask' já instalado, pulando"
+    else
+      brew install --cask --adopt "$cask" || echo "!! Falha ao instalar cask '$cask', continuando"
+    fi
+  done
+}
+
+install_cask ghostty rectangle caffeine dbvisualizer claude obsidian 1password
 # Fonts
-brew install --cask font-martian-mono-nerd-font font-roboto-mono-nerd-font
+install_cask font-martian-mono-nerd-font font-roboto-mono-nerd-font
 
 if [[ -d "$(brew --prefix)/opt/fzf" ]]; then
   echo "==> Instalando key bindings/completion do fzf"
