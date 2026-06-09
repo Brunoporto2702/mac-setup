@@ -51,4 +51,41 @@ return {
 			},
 		},
 	},
+	config = function(_, opts)
+		require("neo-tree").setup(opts)
+
+		-- Colore o NOME do arquivo/pasta por severidade de diagnóstico quando há
+		-- erro/warn, senão mantém a cor de git status. O símbolo de git_status
+		-- continua na coluna à direita, então o estado de git segue visível.
+		-- Obs: o rust-analyzer só publica os erros do workspace após um save.
+		local common = require("neo-tree.sources.common.components")
+		local utils = require("neo-tree.utils")
+		local orig_name = common.name
+		local sev_hl = { "DiagnosticError", "DiagnosticWarn", "DiagnosticInfo", "DiagnosticHint" }
+
+		local function name_with_diag(config, node, state)
+			local result = orig_name(config, node, state)
+			-- Não colore a raiz: a severidade borbulha até ela e ficaria sempre marcada.
+			if node:get_depth() == 1 then
+				return result
+			end
+			local d = utils.index_by_path(state.diagnostics_lookup or {}, node:get_id())
+			if d and d.severity_number and sev_hl[d.severity_number] then
+				result.highlight = sev_hl[d.severity_number]
+			end
+			return result
+		end
+
+		for _, mod in ipairs({
+			"neo-tree.sources.common.components",
+			"neo-tree.sources.filesystem.components",
+			"neo-tree.sources.buffers.components",
+			"neo-tree.sources.git_status.components",
+		}) do
+			local ok, comp = pcall(require, mod)
+			if ok then
+				comp.name = name_with_diag
+			end
+		end
+	end,
 }
