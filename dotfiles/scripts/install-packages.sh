@@ -20,7 +20,7 @@ elif [[ -x /usr/local/bin/brew ]]; then
 fi
 
 brew update
-brew install starship fzf zoxide eza bat ripgrep fd atuin mise uv tmux neovim stylua tree-sitter tree-sitter-cli lazygit zsh-syntax-highlighting zsh-autosuggestions rustup flyctl
+brew install starship fzf zoxide eza bat ripgrep fd atuin mise uv tmux neovim stylua tree-sitter tree-sitter-cli lazygit zsh-syntax-highlighting zsh-autosuggestions rustup flyctl postgresql
 
 # ffmpeg full build (libfreetype/harfbuzz/fontconfig — necessário pro drawtext).
 # O tap principal do Homebrew distribui só o build "lite", sem suporte a fontes.
@@ -40,7 +40,7 @@ install_cask() {
   done
 }
 
-install_cask ghostty rectangle caffeine dbvisualizer claude obsidian 1password
+install_cask ghostty rectangle caffeine dbvisualizer claude obsidian 1password granola conductor
 # Fonts
 install_cask font-martian-mono-nerd-font font-roboto-mono-nerd-font
 
