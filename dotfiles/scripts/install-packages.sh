@@ -20,7 +20,7 @@ elif [[ -x /usr/local/bin/brew ]]; then
 fi
 
 brew update
-brew install starship fzf zoxide eza bat ripgrep fd atuin mise uv tmux neovim stylua tree-sitter tree-sitter-cli lazygit zsh-syntax-highlighting zsh-autosuggestions rustup flyctl postgresql
+brew install starship fzf zoxide eza bat ripgrep fd atuin mise uv tmux neovim stylua tree-sitter tree-sitter-cli lazygit zsh-syntax-highlighting zsh-autosuggestions rustup flyctl postgresql gh
 
 # ffmpeg full build (libfreetype/harfbuzz/fontconfig — necessário pro drawtext).
 # O tap principal do Homebrew distribui só o build "lite", sem suporte a fontes.
@@ -43,6 +43,16 @@ install_cask() {
 install_cask ghostty rectangle caffeine dbvisualizer claude obsidian 1password granola conductor
 # Fonts
 install_cask font-martian-mono-nerd-font font-roboto-mono-nerd-font
+
+# Extensões do gh
+# gh-stack: stacked pull requests nativos do GitHub (public preview desde 30/07/2026).
+if command -v gh >/dev/null 2>&1; then
+  if gh extension list 2>/dev/null | grep -q "gh-stack"; then
+    echo "==> Extensão 'gh-stack' já instalada, pulando"
+  else
+    gh extension install github/gh-stack || echo "!! Falha ao instalar gh-stack, continuando"
+  fi
+fi
 
 if [[ -d "$(brew --prefix)/opt/fzf" ]]; then
   echo "==> Instalando key bindings/completion do fzf"
